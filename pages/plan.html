@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan a Trip — VoyagerAI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="app-page">
+
+  <!-- ── SIDEBAR ────────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <a href="../index.html" class="nav-logo sidebar-logo">
+      <span class="logo-icon">✦</span> Voyager<span class="logo-accent">AI</span>
+    </a>
+    <nav class="sidebar-nav">
+      <a href="plan.html"      class="sidebar-link active">🗺️ Plan a Trip</a>
+      <a href="dashboard.html" class="sidebar-link">📋 My Trips</a>
+      <a href="profile.html"   class="sidebar-link">👤 Profile</a>
+    </nav>
+    <button class="btn-ghost sidebar-logout" id="logout-btn">Log out</button>
+  </aside>
+
+  <!-- ── MAIN CONTENT ───────────────────────────────────────── -->
+  <main class="app-main">
+
+    <header class="app-header">
+      <div>
+        <h1>Plan a new trip</h1>
+        <p class="app-header-sub">Fill in the details and let AI do the rest</p>
+      </div>
+    </header>
+
+    <!-- PLANNER FORM -->
+    <section class="planner-section" id="planner-form-section">
+      <form class="planner-form" id="planner-form" novalidate>
+
+        <!-- Row 1: Destination + Duration -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="destination">Where do you want to go?</label>
+            <input type="text" id="destination" name="destination"
+                   placeholder="e.g. Goa, Manali, Kerala…" required />
+            <span class="field-error" id="dest-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="days">Number of days</label>
+            <input type="number" id="days" name="days"
+                   min="1" max="30" value="3" required />
+            <span class="field-error" id="days-error"></span>
+          </div>
+        </div>
+
+        <!-- Row 2: Dates -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="start-date">Start date</label>
+            <input type="date" id="start-date" name="start_date" required />
+          </div>
+          <div class="form-group">
+            <label for="end-date">End date</label>
+            <input type="date" id="end-date" name="end_date" />
+            <span class="field-hint">Auto-filled from days</span>
+          </div>
+        </div>
+
+        <!-- Budget -->
+        <div class="form-group">
+          <label for="budget">
+            Total budget (INR)
+            <span class="label-badge" id="budget-display">₹15,000</span>
+          </label>
+          <input type="range" id="budget-slider" name="budget"
+                 min="3000" max="200000" step="1000" value="15000"
+                 class="range-slider" />
+          <div class="range-labels">
+            <span>₹3,000</span>
+            <span>₹2,00,000</span>
+          </div>
+        </div>
+
+        <!-- Travel Style -->
+        <div class="form-group">
+          <label>Travel style</label>
+          <div class="radio-cards">
+            <label class="radio-card">
+              <input type="radio" name="travel_style" value="budget" checked />
+              <span class="radio-card-body">
+                <span class="radio-icon">🎒</span>
+                <strong>Budget</strong>
+                <small>Hostels, street food, local transport</small>
+              </span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="travel_style" value="standard" />
+              <span class="radio-card-body">
+                <span class="radio-icon">🏨</span>
+                <strong>Standard</strong>
+                <small>3-star hotels, casual dining</small>
+              </span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="travel_style" value="luxury" />
+              <span class="radio-card-body">
+                <span class="radio-icon">✨</span>
+                <strong>Luxury</strong>
+                <small>5-star resorts, fine dining</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="form-group">
+          <label>What do you enjoy? <span class="label-hint">(pick all that apply)</span></label>
+          <div class="checkbox-grid">
+            <label class="checkbox-chip">
+              <input type="checkbox" name="interests" value="beaches" />
+              <span>🏖️ Beaches</span>
+            </label>
+            <label class="checkbox-chip">
+              <input type="checkbox" name="interests" value="mountains" />
+              <span>🏔️ Mountains</span>
+            </label>
+            <label class="checkbox-chip">
+              <input type="checkbox" name="interests" value="history" checked />
+              <span>🏛️ History</span>
+            </label>
+            <label class="checkbox-chip">
+              <input type="checkbox" name="interests" value="food" checked />
+              <span>🍜 Food</span>
+            </label>
+            <label class="checkbox-chip">
+              <input type="checkbox" name="interests" value="adventure" />
+              <span>🧗 Adventure</span>
+            </label>
+            <label class="checkbox-chip">
+              <input type="checkbox" name="interests" value="nature" />
+              <span>🌿 Nature</span>
+            </label>
+            <label class="checkbox-chip">
+              <input type="checkbox" name="interests" value="shopping" />
+              <span>🛍️ Shopping</span>
+            </label>
+            <label class="checkbox-chip">
+              <input type="checkbox" name="interests" value="nightlife" />
+              <span>🎉 Nightlife</span>
+            </label>
+            <label class="checkbox-chip">
+              <input type="checkbox" name="interests" value="wellness" />
+              <span>🧘 Wellness</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Number of travellers -->
+        <div class="form-group">
+          <label for="travellers">Number of travellers</label>
+          <div class="counter-input">
+            <button type="button" class="counter-btn" id="dec-travellers">−</button>
+            <input type="number" id="travellers" name="travellers"
+                   value="2" min="1" max="20" readonly />
+            <button type="button" class="counter-btn" id="inc-travellers">+</button>
+          </div>
+        </div>
+
+        <!-- Additional notes -->
+        <div class="form-group">
+          <label for="notes">Anything specific you want? <span class="label-hint">(optional)</span></label>
+          <textarea id="notes" name="notes" rows="3"
+                    placeholder="e.g. vegetarian food only, avoid trekking, need wheelchair access…"></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary btn-full btn-large" id="generate-btn">
+          <span class="btn-text">✦ Generate my itinerary</span>
+          <span class="btn-spinner" id="generate-spinner" style="display:none;">Generating…</span>
+        </button>
+
+      </form>
+    </section>
+
+    <!-- ── AI LOADING STATE ──────────────────────────────────── -->
+    <section class="loading-section" id="loading-section" style="display:none;">
+      <div class="ai-loading">
+        <div class="ai-pulse"></div>
+        <h2>Building your itinerary…</h2>
+        <p id="loading-msg">Analysing the best options for your trip</p>
+        <div class="loading-steps">
+          <div class="loading-step active" id="lstep-1">🗺️ Finding top places</div>
+          <div class="loading-step"        id="lstep-2">🍽️ Curating restaurants</div>
+          <div class="loading-step"        id="lstep-3">🏨 Selecting stays</div>
+          <div class="loading-step"        id="lstep-4">💰 Calculating budget</div>
+          <div class="loading-step"        id="lstep-5">✦ Finalising plan</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ITINERARY RESULT ──────────────────────────────────── -->
+    <section class="result-section" id="result-section" style="display:none;">
+
+      <div class="result-header">
+        <div>
+          <h2 id="result-title">5-Day Goa Itinerary</h2>
+          <p id="result-subtitle">Budget trip · 2 travellers · ₹15,000 total</p>
+        </div>
+        <div class="result-actions">
+          <button class="btn-ghost" id="regenerate-btn">↺ Regenerate</button>
+          <button class="btn-ghost" id="save-btn">💾 Save trip</button>
+          <button class="btn-primary" id="export-btn">📥 Export PDF</button>
+        </div>
+      </div>
+
+      <!-- Budget summary bar -->
+      <div class="budget-summary">
+        <div class="budget-item">
+          <span class="budget-label">Activities</span>
+          <span class="budget-value" id="b-activities">₹4,500</span>
+        </div>
+        <div class="budget-item">
+          <span class="budget-label">Food</span>
+          <span class="budget-value" id="b-food">₹3,200</span>
+        </div>
+        <div class="budget-item">
+          <span class="budget-label">Transport</span>
+          <span class="budget-value" id="b-transport">₹2,100</span>
+        </div>
+        <div class="budget-item">
+          <span class="budget-label">Stay</span>
+          <span class="budget-value" id="b-stay">₹4,800</span>
+        </div>
+        <div class="budget-item total">
+          <span class="budget-label">Total</span>
+          <span class="budget-value" id="b-total">₹14,600</span>
+        </div>
+      </div>
+
+      <!-- Day cards — populated by JS -->
+      <div class="day-cards" id="day-cards-container">
+        <!-- Skeleton placeholders -->
+        <div class="day-card skeleton-card">
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-line"></div>
+          <div class="skeleton skeleton-line short"></div>
+        </div>
+        <div class="day-card skeleton-card">
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-line"></div>
+          <div class="skeleton skeleton-line short"></div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../js/plan.js"></script>
+</body>
+</html>

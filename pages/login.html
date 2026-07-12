@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In — VoyagerAI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="auth-page">
+
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">
+      <span class="logo-icon">✦</span> Voyager<span class="logo-accent">AI</span>
+    </a>
+  </nav>
+
+  <main class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1>Welcome back</h1>
+        <p>Log in to access your saved trips</p>
+      </div>
+
+      <!-- Error / success message area -->
+      <div class="alert alert-error" id="login-error" style="display:none;">
+        <span id="login-error-msg">Invalid email or password.</span>
+      </div>
+
+      <form class="auth-form" id="login-form" novalidate>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@email.com"
+            autocomplete="email"
+            required
+          />
+          <span class="field-error" id="email-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">
+            Password
+            <a href="#" class="label-link">Forgot password?</a>
+          </label>
+          <div class="input-wrapper">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            />
+            <button type="button" class="toggle-password" id="toggle-pw" aria-label="Show password">
+              👁️
+            </button>
+          </div>
+          <span class="field-error" id="password-error"></span>
+        </div>
+
+        <div class="form-check">
+          <input type="checkbox" id="remember" name="remember" />
+          <label for="remember">Remember me for 7 days</label>
+        </div>
+
+        <button type="submit" class="btn-primary btn-full" id="login-btn">
+          <span class="btn-text">Log in</span>
+          <span class="btn-spinner" style="display:none;">⟳</span>
+        </button>
+
+      </form>
+
+      <p class="auth-switch">
+        Don't have an account? <a href="register.html">Create one free</a>
+      </p>
+
+      <div class="auth-divider"><span>or continue with</span></div>
+
+      <button class="btn-google">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="18" />
+        Continue with Google
+      </button>
+    </div>
+
+    <!-- Right side illustration panel -->
+    <div class="auth-panel">
+      <div class="auth-panel-content">
+        <div class="panel-quote">"Planned our Goa trip in 8 seconds. Honestly shocked."</div>
+        <div class="panel-author">— Rohan M., Bengaluru</div>
+        <div class="panel-destinations">
+          <span>🏖️ Goa</span>
+          <span>🏔️ Manali</span>
+          <span>🌿 Kerala</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/auth.js"></script>
+</body>
+</html>
